@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   def deploy
-    logger.info 'INFO: Processing deploy request'
+    eventtype = deploy_params[:eventtype]
+    logger.info "INFO: Processing deploy request '#{eventtype}'"
     commit, branch = deploy_params[:commit], deploy_params[:branch]
     logger.info "INFO: Attempting to deploy commit '#{commit}', branch '#{branch}'"
     # https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success
@@ -15,6 +16,6 @@ class ApplicationController < ActionController::API
   private
 
     def deploy_params
-      params.permit(:commit, :branch)
+      params.permit(:commit, :branch, :eventtype)
     end
 end
