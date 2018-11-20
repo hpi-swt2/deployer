@@ -4,7 +4,8 @@ class CreateDeployments < ActiveRecord::Migration[5.2]
       t.string :commit
       t.string :branch
       t.string :event_type
-
+      t.string :source
+      t.boolean :success
       t.timestamps
     end
   end

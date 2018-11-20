@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_135434) do
+ActiveRecord::Schema.define(version: 2018_11_20_165411) do
 
   create_table "deployments", force: :cascade do |t|
     t.string "commit"
     t.string "branch"
     t.string "event_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "source"
     t.boolean "success"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
