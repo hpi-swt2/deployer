@@ -14,7 +14,6 @@ namespace :minadeploy do
     output = `#{command}`
     result=$?.success?
     Deployment.create(args.merge! success: result, log: "$ #{command}\n\n #{output}")
-    byebug
   end
 
   desc "it shows information on the last deploy attempt"
