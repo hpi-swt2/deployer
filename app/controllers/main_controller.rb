@@ -18,6 +18,7 @@ class MainController < ApplicationController
   end
 
   def index
+    @deployments = Deployment.all.order(created_at: :desc)
   end
 
   private
