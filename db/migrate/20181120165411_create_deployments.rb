@@ -6,6 +6,7 @@ class CreateDeployments < ActiveRecord::Migration[5.2]
       t.string :event_type
       t.string :source
       t.boolean :success
+      t.text :log
       t.timestamps
     end
   end

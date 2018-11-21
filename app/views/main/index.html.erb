@@ -9,6 +9,7 @@
         <th><%= Deployment.human_attribute_name(:event_type) %></th>
         <th><%= Deployment.human_attribute_name(:source) %></th>
         <th><%= Deployment.human_attribute_name(:created_at) %></th>
+        <th><%= Deployment.human_attribute_name(:log) %></th>
     </tr>
 
     <% @deployments.each do |deployment| %>
@@ -16,10 +17,16 @@
             <td><%= deployment.id %></td>
             <td style="color: <%= deployment.success ? 'green' : 'red' %>"><%= deployment.success %></td>
             <td title="<%= deployment.commit %>"><%= truncate(deployment.commit, length: 8, omission: '') %></td>
-            <td><%= deployment.branch %></td>
-            <td><%= deployment.event_type %></td>
-            <td><%= deployment.source %></td>
+            <td><%= deployment.branch || '---' %></td>
+            <td><%= deployment.event_type || '---' %></td>
+            <td><%= deployment.source || '---' %></td>
             <td title="<%= deployment.created_at %>"><%= "#{time_ago_in_words(deployment.created_at)} ago" %></td>
+            <td>
+                <details>
+                    <summary>Show log</summary>
+                    <p><%= simple_format(deployment.log, sanitize: false) %></p>
+                </details>
+            </td>
         </tr>
     <% end %>
 </table>

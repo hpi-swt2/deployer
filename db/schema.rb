@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_165411) do
     t.string "event_type"
     t.string "source"
     t.boolean "success"
+    t.text "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
