@@ -5,6 +5,6 @@ git --version && \
 rails --version && \
 git ls-remote --get-url && \
 git pull && \
-bundle install && \
+BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle install && \
 pwd && \
-mina staging deploy -s
+BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle/bin exec mina staging deploy -s
