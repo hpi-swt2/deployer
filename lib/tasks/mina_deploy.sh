@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-cd /home/hrmtadm/vm-portal && \
-pwd && \
+path="/home/hrmtadm/vm-portal"
 git --version && \
-rails --version && \
-git ls-remote --get-url && \
-git pull && \
-BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle install && \
-pwd && \
-BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle exec mina staging deploy -s
+$path/rails --version && \
+git -C $path ls-remote --get-url && \
+git -C $path pull && \
+BUNDLE_GEMFILE=$path/Gemfile $path/bin/bundle install && \
+BUNDLE_GEMFILE=$path/Gemfile $path/bin/bundle exec mina staging deploy -s
