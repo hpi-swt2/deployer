@@ -7,4 +7,4 @@ git ls-remote --get-url && \
 git pull && \
 BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle install && \
 pwd && \
-BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle/bin exec mina staging deploy -s
+BUNDLE_GEMFILE=/home/hrmtadm/vm-portal/Gemfile /home/hrmtadm/vm-portal/bin/bundle exec mina staging deploy -s
