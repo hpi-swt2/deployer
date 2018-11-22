@@ -11,8 +11,7 @@ namespace :minadeploy do
     environment = 'production' if args[:branch] == 'master'
     environment = 'staging' if args[:branch] == 'dev'
     simulate = args.delete(:simulate) ? ' -s' : ''
-    # command = "(cd #{path} && pwd && git --version && rails --version && git ls-remote --get-url && git pull && bundle install && mina #{environment} deploy#{simulate}) 2>&1"
-    command = "~/deployer/lib/tasks/mina_deploy.sh 2>&1"
+    command = "(cd #{path} && pwd && git --version && #{path}/bin/rails --version && git -C #{path} ls-remote --get-url && git -C #{path} pull && BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle install && BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle exec mina #{environment} deploy#{simulate}) 2>&1"
     output = `#{command}`
     result=$?.success?
     Deployment.create(args.merge! success: result, log: "$ #{command}\n\n #{output}")
