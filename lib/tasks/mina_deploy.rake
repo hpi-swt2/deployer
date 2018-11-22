@@ -10,7 +10,7 @@ namespace :minadeploy do
     environment = 'not_set'
     environment = 'production' if args[:branch] == 'master'
     environment = 'staging' if args[:branch] == 'dev'
-    simulate = args[:simulate] ? ' -s' : ''
+    simulate = args.delete(:simulate) ? ' -s' : ''
     command = "(git -C #{path} pull && BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle install && #{path}/bin/bundle exec mina #{environment} deploy#{simulate}) 2>&1"
     output = `#{command}`
     result=$?.success?
