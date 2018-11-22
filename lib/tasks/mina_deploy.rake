@@ -12,7 +12,7 @@ namespace :minadeploy do
     environment = 'staging' if args[:branch] == 'dev'
     simulate = args.delete(:simulate) ? ' -s' : ''
     # command = "(cd #{path} && pwd && git --version && rails --version && git ls-remote --get-url && git pull && bundle install && mina #{environment} deploy#{simulate}) 2>&1"
-    command = "#{path}/lib/tasks/mina_deploy.sh 2>&1"
+    command = "~/deployer/lib/tasks/mina_deploy.sh 2>&1"
     output = `#{command}`
     result=$?.success?
     Deployment.create(args.merge! success: result, log: "$ #{command}\n\n #{output}")
