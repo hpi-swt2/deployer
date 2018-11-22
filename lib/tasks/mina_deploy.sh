@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 path="/home/hrmtadm/vm-portal"
+cd $path && \
+pwd && \
 git --version && \
 $path/bin/rails --version && \
 git -C $path ls-remote --get-url && \
