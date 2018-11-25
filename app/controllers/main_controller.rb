@@ -7,6 +7,7 @@ class MainController < ApplicationController
   def deploy
     # fork do
       Rake::Task["minadeploy:start"].reenable # in case you're going to invoke the same task second time.
+      # :commit, :branch, :event_type, :source, :simulate, :path
       Rake::Task["minadeploy:start"].invoke(deploy_params[:commit],
                                             deploy_params[:branch],
                                             deploy_params[:eventtype],
