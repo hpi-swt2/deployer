@@ -46,4 +46,12 @@ namespace :minadeploy do
     abort('ERROR: No deployments found!') if not d
     puts "#{d.success ? 'DEPLOYED' : 'NOT DEPLOYED'} #{d.created_at} #{d.branch}@#{d.commit} via #{d.source} #{d.event_type}"
   end
+
+  desc "Remove deployments older than 48 hours"
+  task remove_old: :environment do
+    d = Deployment.where(['created_at < ?', 2.days.ago])
+    puts "#{d.count} deployments older than 48 hours"
+    d.destroy_all
+    puts "#{Deployment.count} remaining"
+  end
 end
