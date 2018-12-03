@@ -22,7 +22,7 @@ class MainController < ApplicationController
 
   def index
     @deployments = Deployment.all
-    @deployments = @deployments.successful if index_params[:successful]
+    @deployments = @deployments.successful if index_params[:deployed]
     @deployments.order!(created_at: :desc)
   end
 
@@ -33,6 +33,6 @@ class MainController < ApplicationController
     end
 
     def index_params
-      params.permit(:successful)
+      params.permit(:deployed)
     end
 end

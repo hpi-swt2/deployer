@@ -1,5 +1,11 @@
 <h1>Deployments</h1>
 
+<% if params[:deployed] %>
+    <%= content_tag :p, link_to("Show all", :controller => "main", :action => "index") %>
+<% else %>
+    <%= content_tag :p, link_to("Show only deployed", :controller => "main", :action => "index", :deployed => "deployed") %>
+<% end %>
+
 <table>
     <tr>
         <th><%= Deployment.human_attribute_name(:id) %></th>
