@@ -23,8 +23,8 @@
             <td title="<%= deployment.created_at %>"><%= "#{time_ago_in_words(deployment.created_at)} ago" %></td>
             <td>
                 <details>
-                    <summary>Show log</summary>
-                    <p><%= simple_format(deployment.log, sanitize: false) %></p>
+                    <summary>Detailed log</summary>
+                    <p><%= collapse_repetition(deployment.log) %></p>
                 </details>
             </td>
         </tr>
