@@ -15,17 +15,21 @@
     <% @deployments.each do |deployment| %>
         <tr>
             <td><%= deployment.id %></td>
-            <td style="<%= 'color: green' if deployment.success %>"><%= deployment.success %></td>
+            <td style="<%= 'color: green' if deployment.success %>"><%=h deployment.success ? "✔" : "✗" %></td>
             <td title="<%= deployment.commit %>"><%= truncate(deployment.commit, length: 8, omission: '') %></td>
             <td><%= deployment.branch || '---' %></td>
             <td><%= deployment.event_type || '---' %></td>
             <td><%= deployment.source || '---' %></td>
             <td title="<%= deployment.created_at %>"><%= "#{time_ago_in_words(deployment.created_at)} ago" %></td>
             <td>
-                <details>
-                    <summary>Detailed log</summary>
-                    <p><%= collapse_repetition(deployment.log) %></p>
-                </details>
+                <% if deployment.log %>
+                    <details>
+                        <summary>Detailed log</summary>
+                        <p><%= collapse_repetition(deployment.log) %></p>
+                    </details>
+                <% else %>
+                    ---
+                <% end %>
             </td>
         </tr>
     <% end %>
