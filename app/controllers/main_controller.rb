@@ -21,12 +21,18 @@ class MainController < ApplicationController
   end
 
   def index
-    @deployments = Deployment.all.order(created_at: :desc)
+    @deployments = Deployment.all
+    @deployments = @deployments.successful if index_params[:successful]
+    @deployments.order!(created_at: :desc)
   end
 
   private
 
     def deploy_params
       params.permit(:commit, :branch, :eventtype, :simulate)
+    end
+
+    def index_params
+      params.permit(:successful)
     end
 end
