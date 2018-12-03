@@ -17,11 +17,12 @@ namespace :minadeploy do
         env = case d.branch; when 'master' then 'production'; when 'dev' then 'staging'; else 'not_set' end
         simulate = args.delete(:simulate) ? ' -s' : ''
         path = args.delete(:path){ "/home/#{user}/vm-portal" }
-
-        # for now
-        simulate = ' -s'
-
-        command = "(cd #{path} && pwd && git --version && #{path}/bin/rails --version && git -C #{path} ls-remote --get-url && git -C #{path} pull && BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle install && BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle exec mina #{env} deploy#{simulate}) 2>&1"
+        command = "(cd #{path} && "\
+                  "pwd && git --version && #{path}/bin/rails --version && git -C #{path} ls-remote --get-url && "\
+                  "git -C #{path} pull && "\
+                  "BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle install && "\
+                  "BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle exec mina #{env} deploy#{simulate}"\
+                  ") 2>&1"
         d.log += "$ #{command}\n\n"
         # Execute command (Ruby backticks syntax) and save the output
         d.log += `#{command}`
