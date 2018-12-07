@@ -1,7 +1,5 @@
 <h1>Deployments</h1>
 
-<%= format_log("\e[32m----->\e[0m Building\r\n\e[32m----->\e[0m Moving build to /var/www/vm-swt-hrmt-master.eaalab.hpi.uni-potsdam.de//releases/69\r\n\e[32m----->\e[0m Build finished\r\n\e[32m----->\e[0m Launching\r\n\e[32m----->\e[0m") %>
-
 <% if params[:deployed] %>
     <%= content_tag :p, link_to("Show all", :controller => "main", :action => "index") %>
 <% else %>
