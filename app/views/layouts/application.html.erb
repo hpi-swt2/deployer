@@ -5,7 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css', media: 'all' %>
+    <%= javascript_include_tag 'https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
