@@ -1,9 +1,15 @@
-<h1>Deployments</h1>
+<h1>
+    <% if params[:deployed] %>
+        Successful Deployments
+    <% else %>
+        All Deployments
+    <% end %>
+    </h1>
 
 <% if params[:deployed] %>
-    <%= content_tag :p, link_to("Show all", :controller => "main", :action => "index") %>
+    <%= content_tag :p, link_to("Show all deployments", :controller => "main", :action => "index") %>
 <% else %>
-    <%= content_tag :p, link_to("Show only deployed", :controller => "main", :action => "index", :deployed => "deployed") %>
+    <%= content_tag :p, link_to("Show only successful deployments", :controller => "main", :action => "index", :deployed => "deployed") %>
 <% end %>
 
 <table id="main" class="stripe hover order-column row-border" style="width:100%">
@@ -24,7 +30,7 @@
     <% @deployments.each do |deployment| %>
         <tr>
             <td><%= deployment.id %></td>
-            <td style="<%= 'color: green' if deployment.success %>" data-search="<%=h deployment.success %>">
+            <td style="<%= 'color: green' if deployment.success %>" data-search="deployed:<%=h deployment.success %>">
                 <%=h deployment.success ? "✔" : "✗" %>
             </td>
             <td title="<%= deployment.commit %>"><%= truncate(deployment.commit, length: 8, omission: '') %></td>
@@ -55,8 +61,12 @@ $(document).ready( function() {
     var searchHash = location.hash.substr(1)
     var searchString = searchHash.substr(searchHash.indexOf('search=')).split('&')[0].split('=')[1];
     $('table#main').dataTable( {
+        "dom": 'frtlip', //https://datatables.net/reference/option/dom
         "oSearch": { "sSearch": searchString },
         "order": [[ 6, "desc" ]]
     } );
+    //Float filter to the left
+    $('#main_filter').css('float','left');
+    $('#main_filter').css('margin-bottom','10px');
 } )
 </script>
