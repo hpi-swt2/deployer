@@ -18,7 +18,7 @@ namespace :minadeploy do
         simulate = args.delete(:simulate) ? ' -s' : ''
         path = args.delete(:path){ "/home/#{user}/vm-portal" }
         command = "(cd #{path} && "\
-                  "pwd && git --version && #{path}/bin/rails --version && git -C #{path} ls-remote --get-url && "\
+                  "pwd && git --version && git -C #{path} ls-remote --get-url && "\
                   "git -C #{path} pull && "\
                   "BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle install && "\
                   "BUNDLE_GEMFILE=#{path}/Gemfile #{path}/bin/bundle exec mina #{env} deploy#{simulate}"\
